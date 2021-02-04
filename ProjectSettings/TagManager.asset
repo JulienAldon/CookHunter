@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Ground
+  - Ingredients
   - 
   - 
   - 
@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: ForeGround
+    uniqueID: 1346457143
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

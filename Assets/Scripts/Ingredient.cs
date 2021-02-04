@@ -10,6 +10,10 @@ public class Ingredient : MonoBehaviour
     public Sprite tomatoSprite;
     public Sprite saladSprite;
     public Sprite doughSprite;
+    public Transform groundDetection;
+    public bool movingRight = true;
+    public float speed;
+    public float distance;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +32,29 @@ public class Ingredient : MonoBehaviour
         if (type == "dough") {
             GetComponent<SpriteRenderer>().sprite = doughSprite;
         }
+        if (movingRight == true) {
+            transform.eulerAngles = new Vector3(0, -180, 0);
+            movingRight = false;
+        } else {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            movingRight = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         // movement & behavior
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);
+        if (groundInfo.collider == false) {
+            if (movingRight == true) {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                movingRight = false;
+            } else {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                movingRight = true;
+            }
+        }
     }
 }

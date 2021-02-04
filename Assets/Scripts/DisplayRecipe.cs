@@ -18,17 +18,11 @@ public class DisplayRecipe : MonoBehaviour
     }
 
     void UpdateRecipeUI() {
-        int i = 0;
-        foreach (var d in Game.recipes[0].ingredients) {
-            foreach (var a in Game.recipes[0].done) {
-                if (d == a) {
-                    ingredients[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                    return;
-                } else {
-                    ingredients[i].GetComponent<Image>().color = new Color(1, 1, 1, .5f);
-                }
-            }
-            i++;
+        for (int i = 0; i < 4; i++) {
+            if (Game.recipes[0].done[i] != null)
+                ingredients[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            else
+                ingredients[i].GetComponent<Image>().color = new Color(1, 1, 1, .5f);
         }
     }
 
