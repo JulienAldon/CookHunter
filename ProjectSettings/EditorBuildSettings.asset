@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: fcff8289d4bb32445832a61ce9bf1e21
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 3e5d9a8baad8ec34ca3a15ee2831688a
+  - enabled: 1
+    path: Assets/Scenes/isometric_prototype.unity
+    guid: 3a47495561bcfdb4a8e9abf10c0f4e9b
   m_configObjects: {}

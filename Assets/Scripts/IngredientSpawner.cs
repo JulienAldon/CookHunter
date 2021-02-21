@@ -18,12 +18,5 @@ public class IngredientSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spawnTimer += Time.deltaTime;
-        if (spawnTimer >= spawnTime) {
-            GameObject a = Instantiate(ingredient, transform.position, Quaternion.identity);
-            a.GetComponent<Ingredient>().type = type;
-            a.GetComponent<Ingredient>().movingRight = movingRight;
-            spawnTimer = 0;
-        }
     }
 }

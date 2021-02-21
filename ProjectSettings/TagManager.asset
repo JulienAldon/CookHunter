@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PatrolSpots
+  - Ingredient
+  - Ustencile
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -14,9 +18,9 @@ TagManager:
   - 
   - 
   - Ground
-  - Ingredients
-  - 
-  - 
+  - Interactable
+  - Objstacles
+  - Enemy
   - 
   - 
   - 
@@ -38,9 +42,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: ForeGround
-    uniqueID: 1346457143
+  - name: Background
+    uniqueID: 1288369579
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ingredients
+    uniqueID: 243602935
+    locked: 0
+  - name: Ustenciles
+    uniqueID: 3257818917
+    locked: 0
+  - name: Trees
+    uniqueID: 4087303043
+    locked: 0
+  - name: ForeGround
+    uniqueID: 1346457143
     locked: 0
