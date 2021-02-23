@@ -40,7 +40,8 @@ public class ScoreManager : MonoBehaviour
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
         int interactable = 1 << LayerMask.NameToLayer("Interactable");
         int enemy = 1 << LayerMask.NameToLayer("Enemy");
-        int layerMask = interactable | enemy;
+        int table = 1 << LayerMask.NameToLayer("Table");
+        int layerMask = interactable | enemy | table;
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, Mathf.Infinity, layerMask);
         
         if (inHand) { // interactable in hand
@@ -51,6 +52,18 @@ public class ScoreManager : MonoBehaviour
                 } else if (inHand.tag == "Ustencile" && hit.collider.gameObject.tag == "Ingredient") {
                     inHand.GetComponent<Ustencile>().AddIngredient(hit.collider.gameObject.GetComponent<Ingredient>());
                     Destroy(hit.collider.gameObject); //TODO: Better destruction animation or fill animation (ustencile side)
+                } else if (inHand.tag == "Ustencile" && hit.collider.gameObject.tag == "Table") {
+                    if (!hit.collider.gameObject.GetComponent<Table>().satisfied) {
+                        if (hit.collider.gameObject.GetComponent<Table>().ValidateRecipe(inHand.GetComponent<Ustencile>().ingredients) == true) {
+                            // TODO: JUICE cette action doit etre marquante : tremblement de camera + particle system + bruit de succes
+                        } else {
+                            // TODO: JUICE tremblement de camera + bruit d'erreur
+                        }
+                        inHand.GetComponent<Ustencile>().RemoveIngredients();
+                    } else {
+                        Debug.Log("already satisfied");
+                    }
+                    // Validate the content -> validate a recipe
                 }
             }
             else {

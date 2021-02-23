@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ustencilesTypes {
+public enum UstencilesTypes {
     Marmite, Saladier
 }
 
 public class Ustencile : MonoBehaviour
 {
     public int maxIngredient;
+    public UstencilesTypes type;
     public GameObject[] ingredientInside;
-    public List<Ingredient> ingredient = new List<Ingredient>();
+    public List<Ingredient> ingredients = new List<Ingredient>();
     public Sprite fullSprite;
     public Sprite emptySprite;
     public Sprite midSprite;
@@ -22,9 +23,10 @@ public class Ustencile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ingredient.Count >= maxIngredient) {
+        
+        if (ingredients.Count >= maxIngredient) {
             GetComponent<SpriteRenderer>().sprite = fullSprite;
-        } else if (ingredient.Count == 0) {
+        } else if (ingredients.Count == 0) {
             GetComponent<SpriteRenderer>().sprite = emptySprite;
         } else {
             GetComponent<SpriteRenderer>().sprite = midSprite;
@@ -35,13 +37,29 @@ public class Ustencile : MonoBehaviour
 
     public void AddIngredient(Ingredient ingr)
     {
-        if (ingredient.Count < maxIngredient) {
-            ingredient.Add(ingr);
-            Debug.Log(ingredient.Count);
-            ingredientInside[ingredient.Count - 1].SetActive(true);
-            ingredientInside[ingredient.Count - 1].GetComponent<SpriteRenderer>().sprite = ingr.GetComponent<SpriteRenderer>().sprite;
+        if (ingredients.Count < maxIngredient) {
+            ingredients.Add(ingr);
+            Debug.Log(ingredients.Count);
+            ingredientInside[ingredients.Count - 1].SetActive(true);
+            ingredientInside[ingredients.Count - 1].GetComponent<SpriteRenderer>().sprite = ingr.GetComponent<SpriteRenderer>().sprite;
         } else {
             // maximum count ingredient in ustencile
         }
+    }
+
+    public void RemoveIngredients()
+    {
+        ingredients = new List<Ingredient>();
+        foreach (var elem in ingredientInside) {
+            elem.SetActive(false);
+        }
+
+        // Sound & particles effects
+    }
+
+    public void RemoveLastIngredient()
+    {
+        ingredients.RemoveAt(ingredients.Count - 1);
+        //spawn particles showing you destroyes an ingredient
     }
 }

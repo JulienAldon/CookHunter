@@ -18,6 +18,7 @@ public class Ingredient : MonoBehaviour
     public float TimeBeforeTransformation;
     private float timer;
     public Slider slider;
+    public float allyPenality;
     
     void Start()
     {
@@ -29,39 +30,45 @@ public class Ingredient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.layer == LayerMask.NameToLayer("Default"))
+        if (gameObject.layer == LayerMask.NameToLayer("Default")) {
+            timer = 0;
             return;
+        }
         timer += Time.deltaTime;
-        slider.value = timer / TimeBeforeTransformation;
         int interactable = 1 << LayerMask.NameToLayer("Interactable");
         Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, .2f, interactable);
         if (hit.Length <= 1) {
-            if (timer >= TimeBeforeTransformation) {
-                SpawnSeedOrEnemy();
-                timer = 0;
-            }
+            SpawnSeedOrEnemy();
+            
         } else {
             timer = 0;
         }
-
+        if (kitchen.HasTile(grid.WorldToCell(transform.position))) {
+            slider.value = timer / (TimeBeforeTransformation + allyPenality);
+        } else {
+            slider.value = timer / TimeBeforeTransformation;
+        }
     }
 
     void SpawnSeedOrEnemy()
     {
-         Vector3Int target = grid.WorldToCell(transform.position);
-        Debug.Log(kitchen.HasTile(target));
-        Debug.Log(transform.position);
-        Debug.Log(grid.WorldToCell(transform.position));
-        if (kitchen.HasTile(target)) { // si l'ingredient est sur le sol de la cuisine
-
+        if (kitchen.HasTile(grid.WorldToCell(transform.position))) { // si l'ingredient est sur le sol de la cuisine
             // Instantiate Seed si pas de seed
-            Instantiate(seed, transform.position, Quaternion.identity);
+            slider.value = timer / (TimeBeforeTransformation + allyPenality);
+            if (timer >= TimeBeforeTransformation + allyPenality) {
+                Instantiate(seed, transform.position, Quaternion.identity);
+                Death();
+                timer = 0;
+            }
         } else { // si l'ingredient est dans le wilderness
            // Instantiate Enemy si pas d'ennemy
-           Instantiate(enemy, transform.position, Quaternion.identity);
+           slider.value = timer / TimeBeforeTransformation;
+           if (timer >= TimeBeforeTransformation) {
+                Instantiate(enemy, transform.position, Quaternion.identity);
+                Death();
+                timer = 0;
+            }
         }
-        // Animation de mort
-        Destroy(gameObject);
     }
 
     public void Death() {
