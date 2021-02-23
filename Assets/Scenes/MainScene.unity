@@ -301,8 +301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61606ab05ff31944920bef5b8e951dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredient: {fileID: 2349806034077272105, guid: 919d57f994247a44b9ce7b72d5f684b0,
-    type: 3}
   score: {fileID: 50452173}
   fusil: {fileID: 1919935858}
   fusilParticles: {fileID: 2192151051189061671, guid: ea9b844062a3f524489a58de017508f7,
@@ -311,6 +309,7 @@ MonoBehaviour:
   cursorAnim: {fileID: 643808767}
   inHand: {fileID: 0}
   cursor: {fileID: 1411359875}
+  hole: {fileID: 879300509806209654, guid: 019488bdcc9eea547ab248ef756ac687, type: 3}
 --- !u!1 &125029526
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,8 +848,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1012284587}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.35, y: -8.5, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalPosition: {x: -0.35, y: -4.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1919935858}
   - {fileID: 1209164288}
@@ -1259,7 +1258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919935857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.686, z: 0}
+  m_LocalPosition: {x: 0, y: -2.6859999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1012284589}

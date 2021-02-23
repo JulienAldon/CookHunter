@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
-    public GameObject ingredient;
     public TextMeshProUGUI score;
     public Transform fusil;
     public GameObject fusilParticles;
@@ -29,12 +28,6 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         score.text = Game.score.ToString();
-
-        // if (Game.recipes[0].isRecipeDone()) {
-        //     Game.recipes.RemoveAt(0);
-        //     Game.score += 1;
-        //     Game.recipes.Add(new Recipe());
-        // }
         if (Input.GetMouseButtonDown(0)) {
             fire();
         } else if (Input.GetMouseButtonDown(1)) {
@@ -53,26 +46,33 @@ public class ScoreManager : MonoBehaviour
         if (inHand) { // interactable in hand
             if (hit.collider) { 
                 if (hit.collider.gameObject.tag == "Ustencile" && inHand.tag == "Ingredient") {
-                    hit.collider.gameObject.GetComponent<Ustencile>().AddIngredient(inHand.GetComponent<Ingredient>().type);
+                    hit.collider.gameObject.GetComponent<Ustencile>().AddIngredient(inHand.GetComponent<Ingredient>());
                     Destroy(inHand); //TODO: Better destruction animation or fill animation (ustencile side)
                 } else if (inHand.tag == "Ustencile" && hit.collider.gameObject.tag == "Ingredient") {
-                    inHand.GetComponent<Ustencile>().AddIngredient(hit.collider.gameObject.GetComponent<Ingredient>().type);
+                    inHand.GetComponent<Ustencile>().AddIngredient(hit.collider.gameObject.GetComponent<Ingredient>());
                     Destroy(hit.collider.gameObject); //TODO: Better destruction animation or fill animation (ustencile side)
                 }
             }
             else {
                 // place back the interactable
                 inHand.transform.parent = null;
-                inHand.transform.position = mousePos;
+                inHand.transform.position = new Vector3(mousePos.x, mousePos.y, inHand.transform.position.z);
                 inHand.layer = LayerMask.NameToLayer("Interactable");
                 inHand = null;
             }
             return;
         }
         if (hit.collider) {
-            Debug.Log(hit.collider);
             if (hit.collider.gameObject.tag == "Enemy") {
                 hit.collider.gameObject.GetComponent<Enemy>().Death();
+            }
+            if (hit.collider.gameObject.tag == "Ingredient") {
+                hit.collider.gameObject.GetComponent<Ingredient>().Death();
+
+            }
+            if (hit.collider.gameObject.tag == "Seed") {
+                hit.collider.gameObject.GetComponent<Seed>().Death();
+
             }
         }
         fusilParticles.transform.position = fusil.position;
@@ -85,14 +85,13 @@ public class ScoreManager : MonoBehaviour
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-        if (inHand) {
-            return;
-        }
         int LayerIndex = LayerMask.NameToLayer("Interactable");
         int layerMask = (1 << LayerIndex);
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, Mathf.Infinity, layerMask);
-        if (hit.collider != null) {
+        
+        if (inHand) {
+            return;
+        } if (hit.collider != null) {
             inHand = hit.collider.gameObject;
             inHand.transform.parent = cursor.transform;
             inHand.layer = LayerMask.NameToLayer("Default");
