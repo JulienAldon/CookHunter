@@ -15,6 +15,7 @@ public class ScoreManager : MonoBehaviour
     public GameObject cursor;
     public GameObject[] TablesInLevel;
     public Animator camera;
+    public SoundEffectMixer sound;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +46,7 @@ public class ScoreManager : MonoBehaviour
         }
         if (CheckService()) {
             // Victory or Next Wave
+            // sound.MakeLevelClearSound();
         }
     }
 
@@ -122,6 +124,7 @@ public class ScoreManager : MonoBehaviour
         Instantiate(fusilParticles);
         fusilAnim.SetTrigger("fire");
         cursorAnim.SetTrigger("shoot");
+        sound.MakeShotSound();
     }
 
     void take() 
@@ -140,5 +143,6 @@ public class ScoreManager : MonoBehaviour
             inHand.layer = LayerMask.NameToLayer("Uninteractable");
         }
         cursorAnim.SetTrigger("take");
+        sound.MakeGrabSound();
     }
 }

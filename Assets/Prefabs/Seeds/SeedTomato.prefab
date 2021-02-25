@@ -147,10 +147,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 887750522153103860}
+  type: 0
   timeToSpawnAnIngredient: 3
   Ingredient: {fileID: 6436138043527118189, guid: e8379ea3c5fba29499ef085f06fac0b4,
     type: 3}
   canvas: {fileID: 887750521054598429}
+  explodeParticles: {fileID: 3089146552077062350, guid: d0302fc46d9389a45b2e201788446416,
+    type: 3}
 --- !u!1 &887750520285166487
 GameObject:
   m_ObjectHideFlags: 0

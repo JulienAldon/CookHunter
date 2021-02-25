@@ -106,6 +106,8 @@ MonoBehaviour:
   slider: {fileID: 6457366304223163170}
   allyPenality: 12
   canvas: {fileID: 6457366303136440469}
+  explodeParticles: {fileID: 3089146552077062350, guid: d0302fc46d9389a45b2e201788446416,
+    type: 3}
 --- !u!61 &6457366302723936108
 BoxCollider2D:
   m_ObjectHideFlags: 0

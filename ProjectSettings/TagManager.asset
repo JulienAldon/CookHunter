@@ -12,6 +12,7 @@ TagManager:
   - Kitchen
   - Seed
   - Table
+  - Sound
   layers:
   - Default
   - TransparentFX

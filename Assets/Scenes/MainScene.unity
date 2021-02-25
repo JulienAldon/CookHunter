@@ -124,6 +124,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &71769397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 71769399}
+  - component: {fileID: 71769398}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Sound
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &71769398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71769397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6a25aeed13e9e43b846006c58b0d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShotSound: {fileID: 8300000, guid: b4962f3a9b9191049a3e37ccbd40f955, type: 3}
+  GrabSound: {fileID: 8300000, guid: 99e35ccc853f1254a8d5232cf63d3102, type: 3}
+  VictorySound: {fileID: 8300000, guid: d633584c160247c408aa3459c1f3fac6, type: 3}
+  DefaitSound: {fileID: 8300000, guid: 272ea455cee808e42a8bbfe8a42d20d6, type: 3}
+  sprotchSound: {fileID: 8300000, guid: 2adecd33438597a46badb56b0446cba3, type: 3}
+  levelClearSound: {fileID: 8300000, guid: 4253ba98d80d1e34bbbeae7a4a1a8fe3, type: 3}
+--- !u!4 &71769399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71769397}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &82705930
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +226,7 @@ MonoBehaviour:
   cursor: {fileID: 1411359875}
   TablesInLevel: []
   camera: {fileID: 750448192}
+  sound: {fileID: 71769398}
 --- !u!1 &643808765
 GameObject:
   m_ObjectHideFlags: 0

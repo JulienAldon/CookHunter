@@ -20,9 +20,12 @@ public class Ingredient : MonoBehaviour
     public Slider slider;
     public float allyPenality = 10;
     public GameObject canvas;
+    private SoundEffectMixer sound;
+    public GameObject explodeParticles;
     
     void Start()
     {
+        sound = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundEffectMixer>();
         kitchen = GameObject.FindGameObjectWithTag("Kitchen").GetComponent<Tilemap>();
         grid =  GameObject.FindGameObjectWithTag("Grid").GetComponent<Grid>();
         timer = 0;
@@ -79,6 +82,8 @@ public class Ingredient : MonoBehaviour
 
     public void Death() {
         // Explodey animation
+        sound.MakeSprotchSound();
+        Instantiate(explodeParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

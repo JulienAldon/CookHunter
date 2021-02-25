@@ -6,13 +6,17 @@ using UnityEngine.UI;
 public class Seed : MonoBehaviour
 {
     public Slider slider;
+    public ingredientTypes type;
     public float timeToSpawnAnIngredient;
     private float timer;
     public GameObject Ingredient;
     public GameObject canvas;
+    private SoundEffectMixer sound;
+    public GameObject explodeParticles;
     // Start is called before the first frame update
     void Start()
     {
+        sound = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundEffectMixer>();
         timer = 0;
     }
 
@@ -60,5 +64,8 @@ public class Seed : MonoBehaviour
     public void Death() {
         // Explodey animation
         Destroy(gameObject);
+        var a = Instantiate(explodeParticles, transform.position, Quaternion.identity);
+        a.GetComponent<ParticleSystem>().startColor = (type == ingredientTypes.Tomato ) ? new Color32(255, 0, 0, 255) : new Color32(120, 255, 0, 255); 
+        sound.MakeSprotchSound();
     }
 }
