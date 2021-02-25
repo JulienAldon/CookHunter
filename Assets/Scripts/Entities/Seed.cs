@@ -9,7 +9,6 @@ public class Seed : MonoBehaviour
     public float timeToSpawnAnIngredient;
     private float timer;
     public GameObject Ingredient;
-    private bool ingredientNear;
     public GameObject canvas;
     // Start is called before the first frame update
     void Start()
@@ -17,39 +16,45 @@ public class Seed : MonoBehaviour
         timer = 0;
     }
 
+    bool IngredientNear() {
+        int interactable = 1 << LayerMask.NameToLayer("Interactable");
+        int uninteractable = 1 << LayerMask.NameToLayer("Uninteractable");
+        int layermask = interactable | uninteractable;
+        Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, .1f, layermask);
+        if (hit.Length <= 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.layer == LayerMask.NameToLayer("Default"))
-            return;
-        timer += Time.deltaTime;
-        slider.value = timer / timeToSpawnAnIngredient;
-        if (timer >= timeToSpawnAnIngredient) {
-            SpawnIngredient();
-            timer = 0;
-        }
-        if (ingredientNear) {
+        if (gameObject.layer == LayerMask.NameToLayer("Uninteractable") && IngredientNear()) {
             timer = 0;
             canvas.SetActive(false);
-        } else {
-            canvas.SetActive(true);
+            return;
         }
+        canvas.SetActive(true);
+        timer += Time.deltaTime;
+        
+        if (!IngredientNear()) {
+            gameObject.layer = LayerMask.NameToLayer("Interactable");
+            if (timer >= timeToSpawnAnIngredient) {
+                SpawnIngredient();
+                timer = 0;
+            }
+        } else {
+            gameObject.layer = LayerMask.NameToLayer("Uninteractable");
+        }
+
+        slider.value = timer / timeToSpawnAnIngredient;
     }
 
     void SpawnIngredient()
     {
         var a = Instantiate(Ingredient, transform.position, Quaternion.identity);
-    }
-
-    void OnCollisionExit2D(Collision2D col) {
-        if (col.gameObject.tag == "Ingredient") {
-            ingredientNear = false;
-        }
-    }
-    void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.tag == "Ingredient") {
-            ingredientNear = true;
-        }
     }
 
     public void Death() {

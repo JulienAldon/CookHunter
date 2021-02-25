@@ -31,7 +31,7 @@ public class Ustencile : MonoBehaviour
         } else {
             GetComponent<SpriteRenderer>().sprite = midSprite;
         }
-        if (gameObject.layer == LayerMask.NameToLayer("Default"))
+        if (gameObject.layer == LayerMask.NameToLayer("Uninteractable"))
             return;
     }
 

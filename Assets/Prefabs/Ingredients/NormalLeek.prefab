@@ -102,9 +102,10 @@ MonoBehaviour:
   type: 1
   seed: {fileID: 504712313675882767, guid: c20029626f08ca04681ea97cc53598e2, type: 3}
   enemy: {fileID: 5521825119886552509, guid: a82cacb4da58aaa42b713b9a0418b8b6, type: 3}
-  TimeBeforeTransformation: 2
+  TimeBeforeTransformation: 1.5
   slider: {fileID: 6457366304223163170}
-  allyPenality: 5
+  allyPenality: 12
+  canvas: {fileID: 6457366303136440469}
 --- !u!61 &6457366302723936108
 BoxCollider2D:
   m_ObjectHideFlags: 0

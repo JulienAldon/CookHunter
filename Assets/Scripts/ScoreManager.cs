@@ -13,7 +13,8 @@ public class ScoreManager : MonoBehaviour
     public Animator cursorAnim;
     public GameObject inHand;
     public GameObject cursor;
-    
+    public GameObject[] TablesInLevel;
+    public Animator camera;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,16 @@ public class ScoreManager : MonoBehaviour
         SceneManager.LoadScene("isometric_prototype", LoadSceneMode.Additive);
         // TODO: change how ingredients are instantiated
         // Game.recipes.Add(new Recipe());
+        TablesInLevel = GameObject.FindGameObjectsWithTag("Table");
+    }
+
+    bool CheckService() {
+        foreach (var elem in TablesInLevel) {
+            if (!elem.GetComponent<Table>().satisfied) {
+                return false;
+            }
+        }
+        return true;
     }
 
     // Update is called once per frame
@@ -31,6 +42,9 @@ public class ScoreManager : MonoBehaviour
             fire();
         } else if (Input.GetMouseButtonDown(1)) {
             take();
+        }
+        if (CheckService()) {
+            // Victory or Next Wave
         }
     }
 
@@ -86,6 +100,7 @@ public class ScoreManager : MonoBehaviour
             return;
         }
         if (hit.collider) {
+            camera.SetTrigger("Shake");
             if (hit.collider.gameObject.tag == "Enemy") {
                 hit.collider.gameObject.GetComponent<Enemy>().Death();
             }
@@ -122,7 +137,7 @@ public class ScoreManager : MonoBehaviour
         } if (hit.collider != null) {
             inHand = hit.collider.gameObject;
             inHand.transform.parent = cursor.transform;
-            inHand.layer = LayerMask.NameToLayer("Default");
+            inHand.layer = LayerMask.NameToLayer("Uninteractable");
         }
         cursorAnim.SetTrigger("take");
     }

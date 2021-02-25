@@ -18,7 +18,8 @@ public class Ingredient : MonoBehaviour
     public float TimeBeforeTransformation;
     private float timer;
     public Slider slider;
-    public float allyPenality;
+    public float allyPenality = 10;
+    public GameObject canvas;
     
     void Start()
     {
@@ -30,18 +31,23 @@ public class Ingredient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.layer == LayerMask.NameToLayer("Default")) {
+        if (gameObject.layer == LayerMask.NameToLayer("Uninteractable")) {
             timer = 0;
+            canvas.SetActive(false);
             return;
         }
+        canvas.SetActive(true);
         timer += Time.deltaTime;
         int interactable = 1 << LayerMask.NameToLayer("Interactable");
-        Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, .2f, interactable);
+        int uninteractable = 1 << LayerMask.NameToLayer("Uninteractable");
+        int layermask = interactable | uninteractable;
+        Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, .2f, layermask);
         if (hit.Length <= 1) {
             SpawnSeedOrEnemy();
             
-        } else {
+        } else if (hit[1].GetComponent<BoxCollider2D>().tag != "Ingredient") {
             timer = 0;
+            canvas.SetActive(false);
         }
         if (kitchen.HasTile(grid.WorldToCell(transform.position))) {
             slider.value = timer / (TimeBeforeTransformation + allyPenality);
