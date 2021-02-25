@@ -36,6 +36,7 @@ public class ScoreManager : MonoBehaviour
         //     Game.recipes.Add(new Recipe());
         // }
         if (Input.GetMouseButtonDown(0)) {
+            SoundEffectMixer.Instance.MakeShotSound();
             fire();
         } else if (Input.GetMouseButtonDown(1)) {
             take();

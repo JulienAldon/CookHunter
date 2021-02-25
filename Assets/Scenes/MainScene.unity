@@ -301,8 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61606ab05ff31944920bef5b8e951dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredient: {fileID: 2349806034077272105, guid: 919d57f994247a44b9ce7b72d5f684b0,
-    type: 3}
+  ingredient: {fileID: 131746873}
   score: {fileID: 50452173}
   fusil: {fileID: 1919935858}
   fusilParticles: {fileID: 2192151051189061671, guid: ea9b844062a3f524489a58de017508f7,
@@ -386,6 +385,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125029526}
   m_CullTransparentMesh: 0
+--- !u!1 &131746873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 131746875}
+  - component: {fileID: 131746874}
+  m_Layer: 0
+  m_Name: SoundObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &131746874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131746873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6a25aeed13e9e43b846006c58b0d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShotSound: {fileID: 8300000, guid: 99256037be6969948a3b718d31e3b57c, type: 3}
+  GrabSound: {fileID: 0}
+  VictorySound: {fileID: 0}
+  DefaitSound: {fileID: 0}
+--- !u!4 &131746875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131746873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.1760123, y: 0.05547226, z: -0.553041}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &352276157
 GameObject:
   m_ObjectHideFlags: 0
