@@ -5022,11 +5022,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxIngredient: 3
+  type: 0
   ingredientInside:
   - {fileID: 3303400842343378339}
   - {fileID: 3303400842074010155}
   - {fileID: 3303400840853450222}
-  ingredient: []
+  ingredients: 
   fullSprite: {fileID: 4293422236285885739, guid: 897951661e161d243b5587ba6c6c6ea1,
     type: 3}
   emptySprite: {fileID: 1622861765301525159, guid: 897951661e161d243b5587ba6c6c6ea1,

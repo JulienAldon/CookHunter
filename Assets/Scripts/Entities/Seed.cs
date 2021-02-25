@@ -10,6 +10,7 @@ public class Seed : MonoBehaviour
     private float timer;
     public GameObject Ingredient;
     private bool ingredientNear;
+    public GameObject canvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +27,12 @@ public class Seed : MonoBehaviour
         if (timer >= timeToSpawnAnIngredient) {
             SpawnIngredient();
             timer = 0;
-        } else if (ingredientNear) {
+        }
+        if (ingredientNear) {
             timer = 0;
+            canvas.SetActive(false);
+        } else {
+            canvas.SetActive(true);
         }
     }
 

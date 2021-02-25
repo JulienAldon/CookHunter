@@ -27,12 +27,16 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score.text = Game.score.ToString();
         if (Input.GetMouseButtonDown(0)) {
             fire();
         } else if (Input.GetMouseButtonDown(1)) {
             take();
         }
+    }
+
+    void clearHand() {
+        inHand.transform.parent = null;
+        inHand = null;
     }
 
     void fire() {
@@ -48,16 +52,22 @@ public class ScoreManager : MonoBehaviour
             if (hit.collider) { 
                 if (hit.collider.gameObject.tag == "Ustencile" && inHand.tag == "Ingredient") {
                     hit.collider.gameObject.GetComponent<Ustencile>().AddIngredient(inHand.GetComponent<Ingredient>());
-                    Destroy(inHand); //TODO: Better destruction animation or fill animation (ustencile side)
+                    Destroy(inHand);
+                    //TODO: Better destruction animation or fill animation (ustencile side)
                 } else if (inHand.tag == "Ustencile" && hit.collider.gameObject.tag == "Ingredient") {
                     inHand.GetComponent<Ustencile>().AddIngredient(hit.collider.gameObject.GetComponent<Ingredient>());
-                    Destroy(hit.collider.gameObject); //TODO: Better destruction animation or fill animation (ustencile side)
+                    Destroy(hit.collider.gameObject);
+                    //TODO: Better destruction animation or fill animation (ustencile side)
                 } else if (inHand.tag == "Ustencile" && hit.collider.gameObject.tag == "Table") {
                     if (!hit.collider.gameObject.GetComponent<Table>().satisfied) {
                         if (hit.collider.gameObject.GetComponent<Table>().ValidateRecipe(inHand.GetComponent<Ustencile>().ingredients) == true) {
                             // TODO: JUICE cette action doit etre marquante : tremblement de camera + particle system + bruit de succes
+                            // Success
+                            // + Score or + Request Good
                         } else {
                             // TODO: JUICE tremblement de camera + bruit d'erreur
+                            // Fail
+                            // - Score or -Request
                         }
                         inHand.GetComponent<Ustencile>().RemoveIngredients();
                     } else {
@@ -68,11 +78,11 @@ public class ScoreManager : MonoBehaviour
             }
             else {
                 // place back the interactable
-                inHand.transform.parent = null;
                 inHand.transform.position = new Vector3(mousePos.x, mousePos.y, inHand.transform.position.z);
                 inHand.layer = LayerMask.NameToLayer("Interactable");
-                inHand = null;
+                clearHand();
             }
+            ShootEffect();
             return;
         }
         if (hit.collider) {
@@ -88,6 +98,11 @@ public class ScoreManager : MonoBehaviour
 
             }
         }
+        ShootEffect();
+    }
+
+    void ShootEffect()
+    {
         fusilParticles.transform.position = fusil.position;
         Instantiate(fusilParticles);
         fusilAnim.SetTrigger("fire");

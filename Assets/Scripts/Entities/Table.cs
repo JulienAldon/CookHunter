@@ -4,16 +4,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class Recipe
+{
+    public String name;
+    public List<ingredientTypes> ingredients;
+}
+    
+[System.Serializable]
+public class RecipeList
+{
+    public List<Recipe> recipes;
+}
+
 public class Table : MonoBehaviour
 {
+    public Sprite tomatoSoupRecipe;
+    public Sprite soupRecipe;
+    public GameObject recipeIngredients;
     public bool satisfied = false;
     public Sprite fullSprite;
     public Sprite emptySprite;
-    public List<Ingredient> request;
+    public RecipeList possibleRequest;
+    public Recipe request;
+    public Animator validate;
     // Start is called before the first frame update
     void Start()
     {
-        
+        request = possibleRequest.recipes[UnityEngine.Random.Range(0, possibleRequest.recipes.Count)];
+
+        if (request.name == "Soup") {
+            recipeIngredients.GetComponent<SpriteRenderer>().sprite = soupRecipe;
+        } else if (request.name == "TomatoSoup") {
+            recipeIngredients.GetComponent<SpriteRenderer>().sprite = tomatoSoupRecipe;
+        }
     }
 
     // Update is called once per frame
@@ -22,11 +46,15 @@ public class Table : MonoBehaviour
         
     }
 
-    public bool ValidateRecipe(List<Ingredient> ingr)
+    public bool ValidateRecipe(List<ingredientTypes> ingr)
     {
-        bool isEqual = ScrambledEquals<Ingredient>(ingr, request);
+        bool isEqual = ScrambledEquals<ingredientTypes>(ingr, request.ingredients);
         if (isEqual) {
             GetComponent<SpriteRenderer>().sprite = fullSprite;
+            validate.SetTrigger("validate");
+            recipeIngredients.SetActive(false);
+        } else {
+            validate.SetTrigger("fail");
         }
         return isEqual;
     }

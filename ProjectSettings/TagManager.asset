@@ -8,6 +8,10 @@ TagManager:
   - Ingredient
   - Ustencile
   - Enemy
+  - Grid
+  - Kitchen
+  - Seed
+  - Table
   layers:
   - Default
   - TransparentFX
@@ -21,7 +25,7 @@ TagManager:
   - Interactable
   - Objstacles
   - Enemy
-  - 
+  - Table
   - 
   - 
   - 

@@ -11,7 +11,7 @@ public class Ustencile : MonoBehaviour
     public int maxIngredient;
     public UstencilesTypes type;
     public GameObject[] ingredientInside;
-    public List<Ingredient> ingredients = new List<Ingredient>();
+    public List<ingredientTypes> ingredients = new List<ingredientTypes>();
     public Sprite fullSprite;
     public Sprite emptySprite;
     public Sprite midSprite;
@@ -38,8 +38,7 @@ public class Ustencile : MonoBehaviour
     public void AddIngredient(Ingredient ingr)
     {
         if (ingredients.Count < maxIngredient) {
-            ingredients.Add(ingr);
-            Debug.Log(ingredients.Count);
+            ingredients.Add(ingr.type);
             ingredientInside[ingredients.Count - 1].SetActive(true);
             ingredientInside[ingredients.Count - 1].GetComponent<SpriteRenderer>().sprite = ingr.GetComponent<SpriteRenderer>().sprite;
         } else {
@@ -49,7 +48,7 @@ public class Ustencile : MonoBehaviour
 
     public void RemoveIngredients()
     {
-        ingredients = new List<Ingredient>();
+        ingredients = new List<ingredientTypes>();
         foreach (var elem in ingredientInside) {
             elem.SetActive(false);
         }

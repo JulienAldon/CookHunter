@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
 public enum ingredientTypes {
-    Tomato
+    Tomato, Leek
 }
 
 public class Ingredient : MonoBehaviour
