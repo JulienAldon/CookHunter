@@ -137,7 +137,6 @@ GameObject:
   - component: {fileID: 6436138043527118184}
   - component: {fileID: 6436138043527118191}
   - component: {fileID: 6436138043527118190}
-  - component: {fileID: -7178594392429521815}
   m_Layer: 9
   m_Name: NormalTomato
   m_TagString: Ingredient
@@ -233,6 +232,9 @@ MonoBehaviour:
   canvas: {fileID: 6436138043911557782}
   explodeParticles: {fileID: 3089146552077062350, guid: d0302fc46d9389a45b2e201788446416,
     type: 3}
+  ingredientColor:
+    serializedVersion: 2
+    rgba: 4278199252
 --- !u!61 &6436138043527118191
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -280,19 +282,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-7178594392429521815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6436138043527118189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55994e4a65a45f14f866239346991d92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 1
 --- !u!1 &6436138043911557782
 GameObject:
   m_ObjectHideFlags: 0

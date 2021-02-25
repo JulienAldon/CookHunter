@@ -430,6 +430,9 @@ MonoBehaviour:
   canvas: {fileID: 504712313943920708}
   explodeParticles: {fileID: 3089146552077062350, guid: d0302fc46d9389a45b2e201788446416,
     type: 3}
+  ingredientColor:
+    serializedVersion: 2
+    rgba: 4278219023
 --- !u!1 &504712313943920708
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,7 @@ public class Ingredient : MonoBehaviour
     public GameObject canvas;
     private SoundEffectMixer sound;
     public GameObject explodeParticles;
+    public Color32 ingredientColor;
     
     void Start()
     {
@@ -83,7 +84,8 @@ public class Ingredient : MonoBehaviour
     public void Death() {
         // Explodey animation
         sound.MakeSprotchSound();
-        Instantiate(explodeParticles, transform.position, Quaternion.identity);
+        var a = Instantiate(explodeParticles, transform.position, Quaternion.identity);
+        a.GetComponent<ParticleSystem>().startColor = ingredientColor;
         Destroy(gameObject);
     }
 }

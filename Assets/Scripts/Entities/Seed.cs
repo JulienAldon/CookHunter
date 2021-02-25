@@ -13,6 +13,7 @@ public class Seed : MonoBehaviour
     public GameObject canvas;
     private SoundEffectMixer sound;
     public GameObject explodeParticles;
+    public Color32 ingredientColor;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,7 +66,7 @@ public class Seed : MonoBehaviour
         // Explodey animation
         Destroy(gameObject);
         var a = Instantiate(explodeParticles, transform.position, Quaternion.identity);
-        a.GetComponent<ParticleSystem>().startColor = (type == ingredientTypes.Tomato ) ? new Color32(255, 0, 0, 255) : new Color32(120, 255, 0, 255); 
+        a.GetComponent<ParticleSystem>().startColor = ingredientColor;
         sound.MakeSprotchSound();
     }
 }

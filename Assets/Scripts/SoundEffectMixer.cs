@@ -26,7 +26,7 @@ public class SoundEffectMixer : MonoBehaviour
 
     public void MakeShotSound()
     {
-        MakeSound(ShotSound, .5f);
+        MakeSound(ShotSound, .3f);
     }
 
     public void MakeGrabSound()
