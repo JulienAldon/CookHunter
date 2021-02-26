@@ -44,7 +44,7 @@ public class Seed : MonoBehaviour
         canvas.SetActive(true);
         timer += Time.deltaTime;
         
-        if (!IngredientNear()) {
+        if (!IngredientNear() && transform.parent == null) {
             gameObject.layer = LayerMask.NameToLayer("Interactable");
             if (timer >= timeToSpawnAnIngredient) {
                 SpawnIngredient();

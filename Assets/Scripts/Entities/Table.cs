@@ -28,6 +28,7 @@ public class Table : MonoBehaviour
     public RecipeList possibleRequest;
     public Recipe request;
     public Animator validate;
+    public SoundEffectMixer sound;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +39,8 @@ public class Table : MonoBehaviour
         } else if (request.name == "TomatoSoup") {
             recipeIngredients.GetComponent<SpriteRenderer>().sprite = tomatoSoupRecipe;
         }
+
+        sound = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundEffectMixer>();
     }
 
     // Update is called once per frame
@@ -52,9 +55,12 @@ public class Table : MonoBehaviour
         if (isEqual) {
             GetComponent<SpriteRenderer>().sprite = fullSprite;
             validate.SetTrigger("validate");
+            sound.MakeVictorySound();
             recipeIngredients.SetActive(false);
+            satisfied = true;
         } else {
             validate.SetTrigger("fail");
+            sound.MakeDefaitSound();
         }
         return isEqual;
     }

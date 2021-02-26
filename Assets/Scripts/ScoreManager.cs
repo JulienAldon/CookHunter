@@ -13,7 +13,6 @@ public class ScoreManager : MonoBehaviour
     public Animator cursorAnim;
     public GameObject inHand;
     public GameObject cursor;
-    public GameObject[] TablesInLevel;
     public Animator camera;
     public SoundEffectMixer sound;
     // Start is called before the first frame update
@@ -24,16 +23,6 @@ public class ScoreManager : MonoBehaviour
         SceneManager.LoadScene("isometric_prototype", LoadSceneMode.Additive);
         // TODO: change how ingredients are instantiated
         // Game.recipes.Add(new Recipe());
-        TablesInLevel = GameObject.FindGameObjectsWithTag("Table");
-    }
-
-    bool CheckService() {
-        foreach (var elem in TablesInLevel) {
-            if (!elem.GetComponent<Table>().satisfied) {
-                return false;
-            }
-        }
-        return true;
     }
 
     // Update is called once per frame
@@ -43,10 +32,6 @@ public class ScoreManager : MonoBehaviour
             fire();
         } else if (Input.GetMouseButtonDown(1)) {
             take();
-        }
-        if (CheckService()) {
-            // Victory or Next Wave
-            // sound.MakeLevelClearSound();
         }
     }
 
@@ -63,7 +48,6 @@ public class ScoreManager : MonoBehaviour
         int table = 1 << LayerMask.NameToLayer("Table");
         int layerMask = interactable | enemy | table;
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, Mathf.Infinity, layerMask);
-        
         if (inHand) { // interactable in hand
             if (hit.collider) { 
                 if (hit.collider.gameObject.tag == "Ustencile" && inHand.tag == "Ingredient") {
@@ -90,6 +74,8 @@ public class ScoreManager : MonoBehaviour
                         Debug.Log("already satisfied");
                     }
                     // Validate the content -> validate a recipe
+                } else {
+                    Debug.Log("aze");
                 }
             }
             else {
