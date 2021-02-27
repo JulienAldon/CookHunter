@@ -22,13 +22,10 @@ public class Enemy : MonoBehaviour
     private Vector3 change; 
     public bool right;
     Vector3 startPos;
-<<<<<<< HEAD
     Vector3 endPos;
     SoundEffectMixer sound;
     public GameObject seed;
 
-=======
->>>>>>> 1a218df8c57675a2325aed4143ad9a83740b33d5
 
     // Start is called before the first frame update
     void Start()
