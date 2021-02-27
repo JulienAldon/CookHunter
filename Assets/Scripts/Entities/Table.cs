@@ -29,6 +29,10 @@ public class Table : MonoBehaviour
     public Recipe request;
     public Animator validate;
     public SoundEffectMixer sound;
+    public float timeBeforeSpawn;
+    private float timer = 0;
+    private GameObject[] spawnPos;
+    public GameObject[] aliveIngredients;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,12 +45,21 @@ public class Table : MonoBehaviour
         }
 
         sound = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundEffectMixer>();
+        spawnPos = GameObject.FindGameObjectsWithTag("Spawn");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        if (timer >= timeBeforeSpawn) {
+            SpawnAliveIngredient();
+            timer = 0;
+        }
+    }
+
+    void SpawnAliveIngredient() {
+        Instantiate(aliveIngredients[UnityEngine.Random.Range(0, aliveIngredients.Length)], spawnPos[UnityEngine.Random.Range(0, spawnPos.Length)].transform.position, Quaternion.identity);
     }
 
     public bool ValidateRecipe(List<ingredientTypes> ingr)

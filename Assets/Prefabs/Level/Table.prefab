@@ -347,3 +347,8 @@ MonoBehaviour:
     name: 
     ingredients: 
   validate: {fileID: 1456991646}
+  sound: {fileID: 0}
+  timeBeforeSpawn: 5
+  aliveIngredients:
+  - {fileID: 3861821019539200504, guid: 064c7f9e64f8d2b41a5a425402b4028d, type: 3}
+  - {fileID: 5521825119886552509, guid: a82cacb4da58aaa42b713b9a0418b8b6, type: 3}

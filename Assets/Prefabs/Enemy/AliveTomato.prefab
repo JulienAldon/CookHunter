@@ -148,3 +148,8 @@ MonoBehaviour:
   type: 0
   destroyParticles: {fileID: 5466817834096003014, guid: 9d00c21a7dc75a240ac3c16e3e1112cb,
     type: 3}
+  speed: 1
+  state: 0
+  kitchen: 0
+  right: 0
+  seed: {fileID: 6436138043527118189, guid: e8379ea3c5fba29499ef085f06fac0b4, type: 3}

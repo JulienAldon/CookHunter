@@ -22,6 +22,9 @@ public class Enemy : MonoBehaviour
     public bool right;
     Vector3 startPos;
     Vector3 endPos;
+    SoundEffectMixer sound;
+    public GameObject seed;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +37,7 @@ public class Enemy : MonoBehaviour
         kitchen = false;
         enemybody = GetComponent<Rigidbody2D>();
         right = true;
-        speed = 0.2F;
+        sound = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundEffectMixer>();
     }
 
     // Update is called once per frame
@@ -104,6 +107,12 @@ public class Enemy : MonoBehaviour
 			}
         } else if (obstacle.gameObject.CompareTag("Kitchen"))
             kitchen = true;
+        else if (obstacle.gameObject.CompareTag("Ingredient"))
+        {
+            obstacle.gameObject.GetComponent<Ingredient>().Death();
+        } else if (obstacle.gameObject.CompareTag("Seed")) {
+            obstacle.gameObject.GetComponent<Seed>().Death();
+        }
     }
 
 
@@ -112,6 +121,8 @@ public class Enemy : MonoBehaviour
         // Death Animation 1-2 sec
         // Then spawn an ingredient from type
         // Then destroy this entity
+        sound.MakeSprotchSound();
+        Instantiate(seed, transform.position, Quaternion.identity);
         Instantiate(destroyParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
