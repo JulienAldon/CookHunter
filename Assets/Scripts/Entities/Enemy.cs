@@ -16,8 +16,11 @@ public class Enemy : MonoBehaviour
     public bool kitchen;
     int count;
     List<Vector3> path;
+    List<Vector3> pathtemp;
+    List<Vector3> pathtemptwo;
     float time;
     GameObject goal;
+    GameObject goaltwo;
 
     private Vector3 change; 
     public bool right;
@@ -31,7 +34,13 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         tilemap = GameObject.FindGameObjectWithTag("Wall").GetComponent<Tilemap>();
-        goal = GameObject.FindGameObjectWithTag("Goal");
+        //goal = GameObject.FindGameObjectWithTag("Goal");
+        goal = GameObject.Find("Goal1");
+        goaltwo = GameObject.Find("Goal2");
+        if (goaltwo)
+            Debug.Log("Not null");
+        if (!goaltwo)
+            Debug.Log("null");    
         state = 3;
         count = 0;
         time = 0;
@@ -80,8 +89,27 @@ public class Enemy : MonoBehaviour
 
         } else if (state == 3)
         {
+            if (goal  && goaltwo){
+                pathtemp = AStar.FindPath(tilemap, transform.position, GameObject.Find("Goal1").transform.position);
+                pathtemptwo = AStar.FindPath(tilemap, transform.position, GameObject.Find("Goal2").transform.position);
+                if (pathtemptwo.Count < pathtemp.Count)
+                    path = pathtemptwo;
+                else
+                {
+                    path = pathtemp;
+                }
+
+            }
             if (count == 0){
-                path = AStar.FindPath(tilemap, transform.position, GameObject.FindGameObjectWithTag("Goal").transform.position);
+                if (goal  && goaltwo){
+                    pathtemp = AStar.FindPath(tilemap, transform.position, GameObject.Find("Goal1").transform.position);
+                    pathtemptwo = AStar.FindPath(tilemap, transform.position, GameObject.Find("Goal2").transform.position);
+                    if (pathtemptwo.Count < pathtemp.Count)
+                        path = pathtemptwo;
+                    else
+                        path = pathtemp;
+                } else
+                    path = AStar.FindPath(tilemap, transform.position, GameObject.FindGameObjectWithTag("Goal").transform.position);
                 count= 1;
             }
             if (count < path.Count){
