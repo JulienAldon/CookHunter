@@ -15,12 +15,16 @@ public class ScoreManager : MonoBehaviour
     public GameObject cursor;
     public Animator camera;
     public SoundEffectMixer sound;
+
+    public void LoadLevel(string level) {
+        SceneManager.LoadScene(level, LoadSceneMode.Additive);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         inHand = null;
         // TODO: Move this elsewhere
-        SceneManager.LoadScene("isometric_prototype", LoadSceneMode.Additive);
         // TODO: change how ingredients are instantiated
         // Game.recipes.Add(new Recipe());
     }
