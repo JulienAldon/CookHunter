@@ -17,17 +17,17 @@ public class Enemy : MonoBehaviour
     int count;
     List<Vector3> path;
     float time;
+    GameObject goal;
 
     private Vector3 change; 
     public bool right;
     Vector3 startPos;
-    Vector3 endPos;
 
     // Start is called before the first frame update
     void Start()
     {
         tilemap = GameObject.FindGameObjectWithTag("Wall").GetComponent<Tilemap>();
-        endPos = new Vector3(0,0,0);
+        goal = GameObject.FindGameObjectWithTag("Goal");
         state = 3;
         count = 0;
         time = 0;
@@ -77,7 +77,7 @@ public class Enemy : MonoBehaviour
         } else if (state == 3)
         {
             if (count == 0){
-                path = AStar.FindPath(tilemap, transform.position, endPos);
+                path = AStar.FindPath(tilemap, transform.position, GameObject.FindGameObjectWithTag("Goal").transform.position);
                 count= 1;
             }
             if (count < path.Count){
