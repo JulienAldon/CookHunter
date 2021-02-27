@@ -13,6 +13,7 @@ TagManager:
   - Seed
   - Table
   - Sound
+  - Wall
   layers:
   - Default
   - TransparentFX
