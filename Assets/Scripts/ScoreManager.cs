@@ -15,9 +15,27 @@ public class ScoreManager : MonoBehaviour
     public GameObject cursor;
     public Animator camera;
     public SoundEffectMixer sound;
+    public GameObject pauseMenu;
+    private bool gameStopped = false;
 
     public void LoadLevel(string level) {
         SceneManager.LoadScene(level, LoadSceneMode.Additive);
+    }
+
+    public void LoadMenu() {
+        SceneManager.LoadScene("Menu");
+    }
+
+    public void ResumeGame() {
+        Time.timeScale = 1;
+        gameStopped = false;
+        pauseMenu.SetActive(false);
+    }
+
+    public void PauseGame() {
+        pauseMenu.SetActive(true);
+        gameStopped = true;
+        Time.timeScale = 0;
     }
 
     // Start is called before the first frame update
@@ -32,10 +50,16 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameStopped) {
+            return;
+        }
         if (Input.GetMouseButtonDown(0)) {
             fire();
         } else if (Input.GetMouseButtonDown(1)) {
             take();
+        }
+        if (Input.GetKey("escape")) {
+            PauseGame();
         }
     }
 

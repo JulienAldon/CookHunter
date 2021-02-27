@@ -59,7 +59,8 @@ public class Table : MonoBehaviour
     }
 
     void SpawnAliveIngredient() {
-        Instantiate(aliveIngredients[UnityEngine.Random.Range(0, aliveIngredients.Length)], spawnPos[UnityEngine.Random.Range(0, spawnPos.Length)].transform.position, Quaternion.identity);
+        GameObject ipos = spawnPos[UnityEngine.Random.Range(0, spawnPos.Length)];
+        Instantiate(aliveIngredients[UnityEngine.Random.Range(0, aliveIngredients.Length)], new Vector3(ipos.transform.position.x + UnityEngine.Random.Range(-2, 2), ipos.transform.position.y + UnityEngine.Random.Range(-2, 2), ipos.transform.position.z), Quaternion.identity);
     }
 
     public bool ValidateRecipe(List<ingredientTypes> ingr)
