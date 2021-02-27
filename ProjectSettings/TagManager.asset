@@ -14,7 +14,11 @@ TagManager:
   - Table
   - Sound
   - Wall
+<<<<<<< HEAD
   - Spawn
+=======
+  - Goal
+>>>>>>> 1a218df8c57675a2325aed4143ad9a83740b33d5
   layers:
   - Default
   - TransparentFX
