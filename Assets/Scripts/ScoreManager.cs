@@ -23,6 +23,8 @@ public class ScoreManager : MonoBehaviour
     }
 
     public void LoadMenu() {
+        Time.timeScale = 1;
+        gameStopped = false;
         SceneManager.LoadScene("Menu");
     }
 
