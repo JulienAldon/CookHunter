@@ -10,9 +10,9 @@ Prototype réalisé dans le cadre d'un cours sur le Game Design à Epitech.
 
 ## Aperçu
 
-![Menu](ressources/Menu.PNG)
+![](ressources/Menu.PNG)
 
-![Level1](ressources/Level1.PNG)
+![](ressources/Level1.PNG)
 
-![GameOver](ressources/LevelCleared.PNG)
+![](ressources/LevelCleared.PNG)
 
